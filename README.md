@@ -8,8 +8,9 @@
 3. call modal.show(); to display modal
 
 ##Optional Properties and Methods
-##Properties
+###Properties
 *Modal(child (dom element), strictClose (boolean))*
     * if strict close is true, a user cannot click the backdrop to close the modal window, you must have font awesome to show the close 'x' icon
+###Methods
 * modal.unmount();
     * will remove modal from screen if you want to attach another close handler
