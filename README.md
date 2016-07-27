@@ -9,7 +9,7 @@
 
 ##Optional Properties and Methods
 ###Properties
-    *__Modal(child (dom element), strictClose (boolean))__
+#####Modal(child (dom element), strictClose (boolean))
     * if strict close is true, a user cannot click the backdrop to close the modal window, you must have font awesome to show the close 'x' icon
 ###Methods
 * modal.unmount();
