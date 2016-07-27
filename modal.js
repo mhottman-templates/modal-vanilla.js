@@ -1,7 +1,7 @@
 var Modal = function(child, strictClose) {
     this.child = child;
     this.portal = false;
-    
+
     //strictClose can be passed in as true to enforce
         //only close on clicking 'X' ** Must have font awesome or change
         //closeModal.className in render method to other svg font icon class
@@ -24,21 +24,25 @@ Modal.prototype.show = function() {
 
 
 Modal.prototype.render = function() {
-    setTimeout(function() {
-        this.portal.classList.add('in');
-    }.bind(this), 10);
-    var inner = document.createElement('div');
-        inner.className = 'modal-inner';
-    var closeModal = document.createElement('div');
-        closeModal.id = 'close-modal';
-        closeModal.className = 'fa fa-times';
-    inner.appendChild(closeModal);
-    inner.appendChild(this.child);
-    this.portal.children[0].appendChild(inner);
+    if (this.portal) {
+        setTimeout(function() {
+            this.portal.classList.add('in');
+        }.bind(this), 10);
+        var inner = document.createElement('div');
+            inner.className = 'modal-inner';
+        var closeModal = document.createElement('div');
+            closeModal.id = 'close-modal';
+            closeModal.className = 'fa fa-times';
+        inner.appendChild(closeModal);
+        inner.appendChild(this.child);
+        this.portal.children[0].appendChild(inner);
+    }
 };
 
 Modal.prototype.settleOnMount = function() {
-    this.portal.classList.add('in');
+    if (this.portal) {
+        this.portal.classList.add('in');
+    }
 };
 
 Modal.prototype.hide = function(e) {
@@ -51,6 +55,8 @@ Modal.prototype.hide = function(e) {
 };
 
 Modal.prototype.unmount = function() {
-    document.body.removeChild(this.portal);
-    this.portal = false;
+    if (this.portal) {
+        document.body.removeChild(this.portal);
+        this.portal = false;
+    }
 };
